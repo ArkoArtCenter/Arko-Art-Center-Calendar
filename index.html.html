@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARKO Art Center — Schedule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #000000;
+    --paper: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .frame {
+    width: 100%;
+    max-width: 960px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin: 48px 20px;
+  }
+
+  /* ---------- Header band ---------- */
+
+  .band-header {
+    padding: 26px 28px 22px;
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .band-header h1 {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(22px, 4vw, 32px);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Calendar band ---------- */
+
+  .band-calendar {
+    padding: 28px;
+  }
+
+  .calendar-scale-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .calendar-inner {
+    width: 800px;
+    height: 600px;
+    transform-origin: top left;
+  }
+
+  .calendar-inner iframe {
+    display: block;
+    width: 800px;
+    height: 600px;
+    border: 0;
+  }
+
+  @media (max-width: 480px) {
+    .band-header { padding: 20px 18px 16px; }
+    .band-calendar { padding: 16px; }
+    .frame { margin: 28px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <div class="band-header">
+    <h1>ARKO Art Center</h1>
+  </div>
+
+  <div class="band-calendar">
+    <div class="calendar-scale-wrapper" id="calWrapper">
+      <div class="calendar-inner" id="calInner">
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FSeoul&showPrint=0&title=ARKO%20Art%20Center&src=YXJ0Y2VudGVyYXJrb2FkQGdtYWlsLmNvbQ&src=OTI1OWM1ZmM2MzBlMmFjYWJkNTg0M2JhM2FjYzVmNzhlNWY3OGFmOTAyMjcyYzQzNDAxYjY0MDY3MzFkNmEzZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=OGU3NDJjMmY5YzgzNjBlMDExOWIwN2ZlZThkZDk4ZjM3MGRjODU1YTIxNjZlNzFjZTQ1MzM2YWRkMmI3MTdjOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NjM0YWM1OGFmMmQ5MDZhOTYyNDJmZDdlODRjZjQzNWVmMDUzZmE5ZjNmOGRkZDc0MGY4MDM2MDE1ZDZkNTU3MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23039be5&color=%23ad1457&color=%237986cb&color=%23ef6c00"
+          style="border:0" width="800" height="600" frameborder="0" scrolling="no"
+          title="ARKO Art Center schedule"></iframe>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function scaleCalendar() {
+    var wrapper = document.getElementById('calWrapper');
+    var inner = document.getElementById('calInner');
+    var width = wrapper.offsetWidth;
+    var scale = Math.min(width / 800, 1);
+    inner.style.transform = 'scale(' + scale + ')';
+    wrapper.style.height = (600 * scale) + 'px';
+  }
+  window.addEventListener('resize', scaleCalendar);
+  window.addEventListener('load', scaleCalendar);
+  scaleCalendar();
+</script>
+
+</body>
+</html>
